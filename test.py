@@ -1,9 +1,19 @@
-import requests
-from bs4 import BeautifulSoup
+# -*- encoding=UTF-8 -*-
 
-content = requests.get('http://www.xinshipu.com/zuofadaquan/622/').content;
-soup = BeautifulSoup(content, 'html.parser');
 
-for div in soup.find_all('div', {'class': 'content'}):
-    print(div.text.strip());
-print('zhe')
+def log(test):
+    def decorator(func):
+        def wrapper(*args, **kwargs):
+            print(test)
+            return func(*args, **kwargs)
+        return wrapper
+    return decorator
+
+
+@log('试一下')
+def hello():
+    print('cc')
+
+
+if __name__ == '__main__':
+    hello()
